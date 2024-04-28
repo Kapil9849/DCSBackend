@@ -28,7 +28,9 @@ class SNSNotification(BaseModel):
 async def sns_notification(request: Request, notification: SNSNotification):
     # AWS SNS sends notifications as HTTP POST requests with JSON payloads
     # You can access the JSON payload directly in the request body kapil
-    
+    print("kapil :",notification)
+    request_body = await request.body()
+    print("Received request payload:", request_body.decode())
     # Verify that the request is coming from AWS SNS
     # AWS SNS sends a subscription confirmation message which you should handle separately
     if notification.Type == "SubscriptionConfirmation":
