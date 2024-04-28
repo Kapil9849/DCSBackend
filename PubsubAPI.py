@@ -1,5 +1,5 @@
 import json
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import Body, FastAPI, HTTPException, Request
 from pydantic import BaseModel
 from typing import Any, List, Dict
 import random
@@ -32,7 +32,7 @@ class SNSNotification(BaseModel):
     SigningCertURL: str
 
 @app.post("/sns/notification")
-async def receive_sns_confirmation(request: Request):
+async def receive_sns_confirmation(request: dict = Body(...)):
     # Verify that the request is a SubscriptionConfirmation
     # if notification.Type == "SubscriptionConfirmation":
     #     # Extract relevant information from the notification
