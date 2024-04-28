@@ -31,6 +31,11 @@ class SNSNotification(BaseModel):
     Signature: str
     SigningCertURL: str
 
+
+@app.post("/sns")
+def reciveSNS(message):
+    return message
+
 @app.post("/sns/notification")
 async def receive_sns_confirmation(request: dict = Body(...)):
     # Verify that the request is a SubscriptionConfirmation
