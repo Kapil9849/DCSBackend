@@ -32,25 +32,26 @@ class SNSNotification(BaseModel):
     SigningCertURL: str
 
 @app.post("/sns/notification")
-
-async def receive_sns_confirmation(notification: SNSNotification):
+async def receive_sns_confirmation(request: Request):
     # Verify that the request is a SubscriptionConfirmation
-    if notification.Type == "SubscriptionConfirmation":
-        # Extract relevant information from the notification
-        message_id = notification.MessageId
-        token = notification.Token
-        topic_arn = notification.TopicArn
-        message = notification.Message
-        subscribe_url = notification.SubscribeURL
-        timestamp = notification.Timestamp
-        signature_version = notification.SignatureVersion
-        signature = notification.Signature
-        signing_cert_url = notification.SigningCertURL
+    # if notification.Type == "SubscriptionConfirmation":
+    #     # Extract relevant information from the notification
+    #     message_id = notification.MessageId
+    #     token = notification.Token
+    #     topic_arn = notification.TopicArn
+    #     message = notification.Message
+    #     subscribe_url = notification.SubscribeURL
+    #     timestamp = notification.Timestamp
+    #     signature_version = notification.SignatureVersion
+    #     signature = notification.Signature
+    #     signing_cert_url = notification.SigningCertURL
         
-        # Perform any necessary processing or validation
+    #     # Perform any necessary processing or validation
         
-        # Respond with a success message
-        return {"status": "SubscriptionConfirmationReceived", "message_id": message_id}
+    #     # Respond with a success message
+    #     return {"status": "SubscriptionConfirmationReceived", "message_id": message_id}
+    if(request):
+        return request
     else:
         # Respond with an error for unknown message types
         raise HTTPException(status_code=400, detail="Unknown message type")
