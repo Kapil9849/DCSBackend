@@ -27,7 +27,7 @@ class SNSNotification(BaseModel):
 @app.post("/sns/notification")
 async def sns_notification(request: Request, notification: SNSNotification):
     # AWS SNS sends notifications as HTTP POST requests with JSON payloads
-    # You can access the JSON payload directly in the request body
+    # You can access the JSON payload directly in the request body kapil
     
     # Verify that the request is coming from AWS SNS
     # AWS SNS sends a subscription confirmation message which you should handle separately
