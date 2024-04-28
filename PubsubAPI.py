@@ -21,37 +21,39 @@ async def Startup():
 
 class SNSNotification(BaseModel):
     Type: str
-    Message: str
+    MessageId: str
+    Token: str
     TopicArn: str
+    Message: str
+    SubscribeURL: str
+    Timestamp: str
+    SignatureVersion: str
+    Signature: str
+    SigningCertURL: str
 
 @app.post("/sns/notification")
-async def sns_notification(request: Request, notification: SNSNotification):
-    # AWS SNS sends notifications as HTTP POST requests with JSON payloads
-    # You can access the JSON payload directly in the request body kapil
-    print("kapil :",notification)
-    request_body = await request.body()
-    print("Received request payload:", request_body.decode())
-    # Verify that the request is coming from AWS SNS
-    # AWS SNS sends a subscription confirmation message which you should handle separately
-    if notification.Type == "SubscriptionConfirmation":
-        # Handle subscription confirmation here
-        # Typically you'll need to visit the provided URL to confirm subscription
-        subscription_url = notification.Message
-        # You can also return a response indicating successful subscription confirmation
-        return {"status": "SubscriptionConfirmation"}
-    
-    # Handle other types of notifications (e.g., actual messages)
-    elif notification.Type == "Notification":
-        # Do something with the notification message
-        notification_message = notification.Message
-        print("Received notification:", notification_message)
-        # You can also return a response indicating successful notification processing
-        return {"status": "NotificationReceived"}
-    
-    # Return an error response for unknown message types
-    else:
-        raise HTTPException(status_code=400, detail="Unknown message type")
 
+async def receive_sns_confirmation(notification: SNSNotification):
+    # Verify that the request is a SubscriptionConfirmation
+    if notification.Type == "SubscriptionConfirmation":
+        # Extract relevant information from the notification
+        message_id = notification.MessageId
+        token = notification.Token
+        topic_arn = notification.TopicArn
+        message = notification.Message
+        subscribe_url = notification.SubscribeURL
+        timestamp = notification.Timestamp
+        signature_version = notification.SignatureVersion
+        signature = notification.Signature
+        signing_cert_url = notification.SigningCertURL
+        
+        # Perform any necessary processing or validation
+        
+        # Respond with a success message
+        return {"status": "SubscriptionConfirmationReceived", "message_id": message_id}
+    else:
+        # Respond with an error for unknown message types
+        raise HTTPException(status_code=400, detail="Unknown message type")
 
 if __name__ == "__main__":
     import uvicorn
