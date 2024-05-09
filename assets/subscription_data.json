@@ -1,0 +1,47 @@
+[
+    {
+        "user_id": "1",
+        "subscription_data": {
+            "Entertainment": {
+                "sub_topic": [
+                    "Telugu",
+                    "Hindi",
+                    "Malayalam"
+                ]
+            },
+            "Crime": {
+                "sub_topic": [
+                    "Violence"
+                ]
+            },
+            "Current_Affairs": {
+                "sub_topic": [
+                    "Global Issues",
+                    "Politics"
+                ]
+            }
+        }
+    },
+    {
+        "user_id": "2",
+        "subscription_data": {
+            "Entertainment": {
+                "sub_topic": [
+                    "Telugu",
+                    "Hindi"
+                ]
+            }
+        }
+    },
+    {
+        "user_id": "3",
+        "subscription_data": {
+            "Entertainment": {
+                "sub_topic": [
+                    "Telugu",
+                    "Hindi"
+                ]
+            }
+        }
+    }
+]

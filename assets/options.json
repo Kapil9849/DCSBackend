@@ -1,0 +1,18 @@
+{
+    "Business": {
+      "subtopics": ["Finance", "Economy", "Investing"]
+    },
+    "Crime": {
+      "subtopics": ["Fraud", "Theft", "Violence"]
+    },
+    "Current_Affairs": {
+      "subtopics": ["Politics", "Global Issues", "Local News"]
+    },
+    "Entertainment": {
+      "subtopics": ["Telugu", "English", "Hindi", "Tamil","Malayalam"]
+    },
+    "Sports": {
+      "subtopics": ["Cricket", "Football", "Tennis", "Basketball"]
+    }
+  }
+  
